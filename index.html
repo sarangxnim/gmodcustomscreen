@@ -21,9 +21,36 @@ body{
 
 <body>
 
-<audio autoplay loop>
-    <source src="slumpscreen.ogg" type="audio/ogg">
+<audio autoplay loop id="bgMusic">
+    <source src="" type="audio/ogg">
 </audio>
+
+<script>
+const musicList = [
+    "slumpscreen.ogg",
+    "visionscreen.ogg"
+];
+
+let currentTrack = 0;
+
+function playRandomMusic() {
+    let newTrack;
+    do {
+        newTrack = Math.floor(Math.random() * musicList.length);
+    } while (musicList.length > 1 && newTrack === currentTrack);
+    
+    currentTrack = newTrack;
+    const audio = document.getElementById('bgMusic');
+    const source = audio.querySelector('source');
+    source.src = musicList[currentTrack];
+    audio.load();
+    audio.play();
+}
+
+playRandomMusic();
+
+setInterval(playRandomMusic, 86400000);
+</script>
 
 </body>
 </html>
