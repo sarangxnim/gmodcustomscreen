@@ -3,22 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Загрузка сервера</title>
-
 <style>
 *{
     margin:0;
     padding:0;
 }
-
 body{
     background: url("background.jpg") no-repeat center center fixed;
     background-size: cover;
     overflow: hidden;
 }
 </style>
-
 </head>
-
 <body>
 
 <audio autoplay loop id="bgMusic">
@@ -28,30 +24,14 @@ body{
 <script>
 const musicList = [
     "slumpscreen.ogg",
-    "visionscreen.ogg",
-    "fearlessscreen.ogg",
-    "lostscreen.ogg"
+    "fallingupscreen.ogg"
 ];
 
-let currentTrack = 0;
-
-function playRandomMusic() {
-    let newTrack;
-    do {
-        newTrack = Math.floor(Math.random() * musicList.length);
-    } while (musicList.length > 1 && newTrack === currentTrack);
-    
-    currentTrack = newTrack;
-    const audio = document.getElementById('bgMusic');
-    const source = audio.querySelector('source');
-    source.src = musicList[currentTrack];
-    audio.load();
-    audio.play();
-}
-
-playRandomMusic();
-
-setInterval(playRandomMusic, 86400000);
+const randomTrack = musicList[Math.floor(Math.random() * musicList.length)];
+const audio = document.getElementById('bgMusic');
+audio.querySelector('source').src = randomTrack;
+audio.load();
+audio.play();
 </script>
 
 </body>
